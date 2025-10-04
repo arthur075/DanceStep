@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanceStep - Aprenda a Dançar</title>
+   
+</head>
+        <link rel="stylesheet" href="style.css">
+
+<body>
+    <div class="overlay" id="overlay"></div>
+
+    <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <h2>Comandos e Funcionalidades do App:</h2>
+
+        <div class="feature">
+            <div class="feature-icon"></div>
+            <h3>Testar Posições:</h3>
+            <p>O usuário pode testar e ajustar diferentes posições com os bonecos disponíveis no app.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon"></div>
+            <h3>Gravar Passos:</h3>
+            <p>É possível gravar uma sequência de passos de dança. O aplicativo reconhecerá e reproduzirá esses passos
+                automaticamente no boneco escolhido.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon"></div>
+            <h3>Sugestões de Passos:</h3>
+            <p>O app oferece sugestões de passos de dança, que o usuário pode experimentar ou combinar como preferir.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon"></div>
+            <h3>Testar Músicas e Ritmos:</h3>
+            <p>O usuário pode testar diversas músicas com diferentes ritmos e aplicar vários estilos de passos nos
+                bonecos para ver como eles se adaptam.</p>
+        </div>
+
+        <!-- Adicionado do código secundário -->
+        <div class="feature" style="border-left-color: #4CAF50; cursor: pointer;" onclick="openStage()">
+            <div class="feature-icon" style="background: #4CAF50;">🎭</div>
+            <h3>Palco de Coreografia:</h3>
+            <p>Crie suas próprias coreografias! Arraste os bonecos para o palco e posicione-os como desejar para montar
+                formações e sequências de dança.</p>
+        </div>
+
+        <div class="feature" style="border-left-color: #9C27B0; cursor: pointer;" onclick="openQuiz()">
+            <div class="feature-icon" style="background: #9C27B0;">🎵</div>
+            <h3>Descubra Seu Estilo Musical:</h3>
+            <p>Responda perguntas divertidas e descubra qual estilo de dança e música combina perfeitamente com sua
+                personalidade!</p>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="header">
+            <h1>DanceStep</h1>
+            <p>Aprenda a dançar com nossas coreografias animadas!</p>
+        </div>
+
+        <!-- Stage Modal - CÓDIGO SECUNDÁRIO APLICADO COM CORREÇÕES PARA MOBILE -->
+        <div class="stage-modal" id="stageModal">
+            <div class="stage-header">
+                <h2>🎭 Palco de Coreografia</h2>
+                <button class="close-stage" onclick="closeStage()">×</button>
+            </div>
+
+            <div class="dancers-palette">
+                <div class="palette-label">Arraste os dançarinos para o palco:</div>
+                <div class="dancer-item" draggable="true" ondragstart="dragStart(event)" data-color="#FF1493">
+                    <svg viewBox="0 0 50 70" style="width: 100%; height: 100%;">
+                        <circle cx="25" cy="10" r="8" fill="#FF1493" />
+                        <line x1="25" y1="18" x2="25" y2="45" stroke="#FF1493" stroke-width="3" />
+                        <line x1="25" y1="25" x2="15" y2="35" stroke="#FF1493" stroke-width="3" />
+                        <line x1="25" y1="25" x2="35" y2="35" stroke="#FF1493" stroke-width="3" />
+                        <line x1="25" y1="45" x2="15" y2="65" stroke="#FF1493" stroke-width="3" />
+                        <line x1="25" y1="45" x2="35" y2="65" stroke="#FF1493" stroke-width="3" />
+                    </svg>
+                </div>
+                <div class="dancer-item" draggable="true" ondragstart="dragStart(event)" data-color="#4169E1">
+                    <svg viewBox="0 0 50 70" style="width: 100%; height: 100%;">
+                        <circle cx="25" cy="10" r="8" fill="#4169E1" />
+                        <line x1="25" y1="18" x2="25" y2="45" stroke="#4169E1" stroke-width="3" />
+                        <line x1="25" y1="25" x2="15" y2="35" stroke="#4169E1" stroke-width="3" />
+                        <line x1="25" y1="25" x2="35" y2="35" stroke="#4169E1" stroke-width="3" />
+                        <line x1="25" y1="45" x2="15" y2="65" stroke="#4169E1" stroke-width="3" />
+                        <line x1="25" y1="45" x2="35" y2="65" stroke="#4169E1" stroke-width="3" />
+                    </svg>
+                </div>
+                <div class="dancer-item" draggable="true" ondragstart="dragStart(event)" data-color="#32CD32">
+                    <svg viewBox="0 0 50 70" style="width: 100%; height: 100%;">
+                        <circle cx="25" cy="10" r="8" fill="#32CD32" />
+                        <line x1="25" y1="18" x2="25" y2="45" stroke="#32CD32" stroke-width="3" />
+                        <line x1="25" y1="25" x2="15" y2="35" stroke="#32CD32" stroke-width="3" />
+                        <line x1="25" y1="25" x2="35" y2="35" stroke="#32CD32" stroke-width="3" />
+                        <line x1="25" y1="45" x2="15" y2="65" stroke="#32CD32" stroke-width="3" />
+                        <line x1="25" y1="45" x2="35" y2="65" stroke="#32CD32" stroke-width="3" />
+                    </svg>
+                </div>
+                <div class="dancer-item" draggable="true" ondragstart="dragStart(event)" data-color="#FFD700">
+                    <svg viewBox="0 0 50 70" style="width: 100%; height: 100%;">
+                        <circle cx="25" cy="10" r="8" fill="#FFD700" />
+                        <line x1="25" y1="18" x2="25" y2="45" stroke="#FFD700" stroke-width="3" />
+                        <line x1="25" y1="25" x2="15" y2="35" stroke="#FFD700" stroke-width="3" />
+                        <line x1="25" y1="25" x2="35" y2="35" stroke="#FFD700" stroke-width="3" />
+                        <line x1="25" y1="45" x2="15" y2="65" stroke="#FFD700" stroke-width="3" />
+                        <line x1="25" y1="45" x2="35" y2="65" stroke="#FFD700" stroke-width="3" />
+                    </svg>
+                </div>
+                <div class="dancer-item" draggable="true" ondragstart="dragStart(event)" data-color="#FF6347">
+                    <svg viewBox="0 0 50 70" style="width: 100%; height: 100%;">
+                        <circle cx="25" cy="10" r="8" fill="#FF6347" />
+                        <line x1="25" y1="18" x2="25" y2="45" stroke="#FF6347" stroke-width="3" />
+                        <line x1="25" y1="25" x2="15" y2="35" stroke="#FF6347" stroke-width="3" />
+                        <line x1="25" y1="25" x2="35" y2="35" stroke="#FF6347" stroke-width="3" />
+                        <line x1="25" y1="45" x2="15" y2="65" stroke="#FF6347" stroke-width="3" />
+                        <line x1="25" y1="45" x2="35" y2="65" stroke="#FF6347" stroke-width="3" />
+                    </svg>
+                </div>
+                <div class="dancer-item" draggable="true" ondragstart="dragStart(event)" data-color="#9370DB">
+                    <svg viewBox="0 0 50 70" style="width: 100%; height: 100%;">
+                        <circle cx="25" cy="10" r="8" fill="#9370DB" />
+                        <line x1="25" y1="18" x2="25" y2="45" stroke="#9370DB" stroke-width="3" />
+                        <line x1="25" y1="25" x2="15" y2="35" stroke="#9370DB" stroke-width="3" />
+                        <line x1="25" y1="25" x2="35" y2="35" stroke="#9370DB" stroke-width="3" />
+                        <line x1="25" y1="45" x2="15" y2="65" stroke="#9370DB" stroke-width="3" />
+                        <line x1="25" y1="45" x2="35" y2="65" stroke="#9370DB" stroke-width="3" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="stage-container" id="stageContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="stage-curtain"></div>
+                <div class="stage-spotlight"></div>
+                <div class="stage-floor"></div>
+            </div>
+
+            <div class="stage-controls">
+                <button class="stage-btn" onclick="saveCoreography()">💾 Salvar Coreografia</button>
+                <button class="stage-btn secondary" onclick="clearStage()">🗑️ Limpar Palco</button>
+                <button class="stage-btn" onclick="animateDancers()">▶️ Animar Dançarinos</button>
+            </div>
+        </div>
+
+        <!-- Quiz Modal -->
+        <div class="quiz-modal" id="quizModal">
+            <div class="quiz-header">
+                <h2>🎵 Descubra Seu Estilo Musical</h2>
+                <p class="quiz-subtitle">Responda as perguntas e descubra qual ritmo combina com você!</p>
+                <button class="close-quiz" onclick="closeQuiz()">×</button>
+            </div>
+
+            <div class="quiz-progress" id="quizProgress">
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+            </div>
+
+            <div id="quizQuestions">
+                <!-- Question 1 -->
+                <div class="quiz-question active" data-question="1">
+                    <div class="question-number">Pergunta 1 de 6</div>
+                    <div class="question-text">O que a música significa para você?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(1, 'a')">
+                            <span class="option-letter">A</span>
+                            Conexão com as raízes e tradição.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(1, 'b')">
+                            <span class="option-letter">B</span>
+                            União e momentos leves com pessoas queridas.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(1, 'c')">
+                            <span class="option-letter">C</span>
+                            Energia que contagia e me faz dançar.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(1, 'd')">
+                            <span class="option-letter">D</span>
+                            Liberdade de me expressar sem limites.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="quiz-question" data-question="2">
+                    <div class="question-number">Pergunta 2 de 6</div>
+                    <div class="question-text">Quando você está em um dia difícil, o que procura na música?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(2, 'a')">
+                            <span class="option-letter">A</span>
+                            Força e alegria para não perder a esperança.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(2, 'b')">
+                            <span class="option-letter">B</span>
+                            Leveza e descontração para esquecer os problemas.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(2, 'c')">
+                            <span class="option-letter">C</span>
+                            Animação e movimento para renovar o ânimo.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(2, 'd')">
+                            <span class="option-letter">D</span>
+                            Intensidade para extravasar e liberar tudo.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="quiz-question" data-question="3">
+                    <div class="question-number">Pergunta 3 de 6</div>
+                    <div class="question-text">Qual cenário você escolheria para ouvir música?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(3, 'a')">
+                            <span class="option-letter">A</span>
+                            Uma roda animada na rua ou no barzinho.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(3, 'b')">
+                            <span class="option-letter">B</span>
+                            Um encontro íntimo com amigos próximos.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(3, 'c')">
+                            <span class="option-letter">C</span>
+                            Um carnaval ou show em multidão.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(3, 'd')">
+                            <span class="option-letter">D</span>
+                            Uma pista lotada com luzes e batidas.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="quiz-question" data-question="4">
+                    <div class="question-number">Pergunta 4 de 6</div>
+                    <div class="question-text">Como você expressa seus sentimentos através da música?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(4, 'a')">
+                            <span class="option-letter">A</span>
+                            Cantando junto em coro, no improviso.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(4, 'b')">
+                            <span class="option-letter">B</span>
+                            Sorrindo, brincando e compartilhando.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(4, 'c')">
+                            <span class="option-letter">C</span>
+                            Dançando, vibrando e celebrando.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(4, 'd')">
+                            <span class="option-letter">D</span>
+                            Pulando, gritando e vivendo a intensidade.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="quiz-question" data-question="5">
+                    <div class="question-number">Pergunta 5 de 6</div>
+                    <div class="question-text">O que mais importa para você em uma música?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(5, 'a')">
+                            <span class="option-letter">A</span>
+                            A batida marcante e tradicional.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(5, 'b')">
+                            <span class="option-letter">B</span>
+                            A descontração e proximidade nas letras.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(5, 'c')">
+                            <span class="option-letter">C</span>
+                            A energia que levanta todo mundo.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(5, 'd')">
+                            <span class="option-letter">D</span>
+                            A força da batida e o impacto sonoro.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="quiz-question" data-question="6">
+                    <div class="question-number">Pergunta 6 de 6</div>
+                    <div class="question-text">Se sua vida fosse uma trilha sonora, seria:</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectAnswer(6, 'a')">
+                            <span class="option-letter">A</span>
+                            Um clássico que nunca sai de moda.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(6, 'b')">
+                            <span class="option-letter">B</span>
+                            Uma música leve e divertida.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(6, 'c')">
+                            <span class="option-letter">C</span>
+                            Um hit contagiante de verão.
+                        </div>
+                        <div class="quiz-option" onclick="selectAnswer(6, 'd')">
+                            <span class="option-letter">D</span>
+                            Uma batida intensa que domina a pista.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="quiz-result" id="quizResult">
+                <div class="result-icon" id="resultIcon"></div>
+                <div class="result-title" id="resultTitle"></div>
+                <div class="result-description" id="resultDescription"></div>
+                <div class="result-buttons">
+                    <button class="result-btn" onclick="applyGenreAndClose()">Começar a Dançar!</button>
+                    <button class="result-btn secondary" onclick="restartQuiz()">Refazer Quiz</button>
+                </div>
+            </div>
+
+            <div class="quiz-nav" id="quizNav">
+                <button class="quiz-nav-btn" onclick="previousQuestion()" id="prevBtn" disabled>← Anterior</button>
+                <button class="quiz-nav-btn" onclick="nextQuestion()" id="nextBtn" disabled>Próxima →</button>
+            </div>
+        </div>
+
+        <div class="dance-container">
+            <div class="step-suggestions">
+                <div>
+                    <h2 class="section-title">FUNDAMENTOS PARA QUALQUER ESTILO DE DANÇA</h2>
+
+                    <div class="fundamentals-intro">
+                        <p>Estes são os elementos essenciais que formam a base de qualquer estilo de dança. Domine esses
+                            fundamentos e você estará preparado para aprender qualquer ritmo!</p>
+                    </div>
+
+
+                    <!-- Área dos textos explicativos -->
+                    <div class="fundamentals-text-container" id="fundamentalsTextContainer">
+                        <div class="fundamental-text active" id="text-rhythm">
+                            <h3>Percepção Rítmica</h3>
+                            <p>Sinta a música ou o som. Bata o pé ou as palmas seguindo o ritmo. Você precisa ouvir com
+                                atenção e repetir o padrão. Isso vai ajudar seu corpo a entrar no tempo certo.</p>
+                        </div>
+
+                        <div class="fundamental-text" id="text-weight">
+                            <h3>Controle de Peso</h3>
+                            <p>Distribua o peso do seu corpo igualmente entre os pés. Se mover para um lado, transfira o
+                                peso suavemente. Você precisa estar consciente do seu equilíbrio para se mover com
+                                segurança.</p>
+                        </div>
+
+                        <div class="fundamental-text" id="text-knees">
+                            <h3>Flexão de Joelhos</h3>
+                            <p>Afaste um pouco os pés, dobre os joelhos devagar, mantendo as costas retas. Você precisa
+                                flexionar para amortecer impactos e dar mais estabilidade ao movimento.</p>
+                        </div>
+
+                        <div class="fundamental-text" id="text-posture">
+                            <h3>Postura Corporal</h3>
+                            <p>Endireite as costas, abra o peito, relaxe os ombros. Você precisa manter essa postura
+                                para evitar dores e ter mais controle nos movimentos.</p>
+                        </div>
+
+                        <div class="fundamental-text" id="text-space">
+                            <h3>Consciência Espacial</h3>
+                            <p>Olhe ao redor, perceba o espaço, veja onde estão pessoas e objetos. Você precisa usar
+                                essa percepção para se movimentar sem esbarrar e com mais precisão.</p>
+                        </div>
+
+                        <div class="fundamental-text" id="text-coordination">
+                            <h3>Coordenação Motora</h3>
+                            <p>Comece com movimentos simples (braços e pernas juntos) e depois combine mais de um
+                                movimento ao mesmo tempo. Você precisa praticar isso para que seus gestos fiquem mais
+                                harmoniosos.</p>
+                        </div>
+                    </div>
+
+                    <div class="dance-figure-controls">
+                        <button class="figure-btn active" onclick="showFundamentalText('rhythm')">Percepção
+                            Rítmica</button>
+                        <button class="figure-btn" onclick="showFundamentalText('weight')">Controle de Peso</button>
+                        <button class="figure-btn" onclick="showFundamentalText('knees')">Flexão de Joelhos</button>
+                        <button class="figure-btn" onclick="showFundamentalText('posture')">Postura Corporal</button>
+                        <button class="figure-btn" onclick="showFundamentalText('space')">Consciência Espacial</button>
+                        <button class="figure-btn" onclick="showFundamentalText('coordination')">Coordenação
+                            Motora</button>
+                    </div>
+
+                    <div class="steps-grid">
+                        <div class="step-card active" onclick="selectStep(1)">
+                            <div class="step-number">1</div>
+                            <div class="step-sprite">
+                                <div class="step-icon">🎵</div>
+                            </div>
+                            <div class="step-title">Percepção Rítmica</div>
+                            <div class="step-description">Identificar e seguir o compasso da música</div>
+                        </div>
+
+                        <div class="step-card" onclick="selectStep(2)">
+                            <div class="step-number">2</div>
+                            <div class="step-sprite">
+                                <div class="step-icon">⚖️</div>
+                            </div>
+                            <div class="step-title">Controle de Peso</div>
+                            <div class="step-description">Transferência de peso entre os pés</div>
+                        </div>
+
+                        <div class="step-card" onclick="selectStep(3)">
+                            <div class="step-number">3</div>
+                            <div class="step-sprite">
+                                <div class="step-icon">🦵</div>
+                            </div>
+                            <div class="step-title">Flexão de Joelhos</div>
+                            <div class="step-description">Manter joelhos levemente flexionados</div>
+                        </div>
+
+                        <div class="step-card" onclick="selectStep(4)">
+                            <div class="step-number">4</div>
+                            <div class="step-sprite">
+                                <div class="step-icon">🧍</div>
+                            </div>
+                            <div class="step-title">Postura Corporal</div>
+                            <div class="step-description">Alinhamento correto da coluna</div>
+                        </div>
+
+                        <div class="step-card" onclick="selectStep(5)">
+                            <div class="step-number">5</div>
+                            <div class="step-sprite">
+                                <div class="step-icon">👀</div>
+                            </div>
+                            <div class="step-title">Consciência Espacial</div>
+                            <div class="step-description">Noção do espaço ao redor</div>
+                        </div>
+
+                        <div class="step-card" onclick="selectStep(6)">
+                            <div class="step-number">6</div>
+                            <div class="step-sprite">
+                                <div class="step-icon">🔄</div>
+                            </div>
+                            <div class="step-title">Coordenação Motora</div>
+                            <div class="step-description">Sincronização de movimentos</div>
+                        </div>
+                    </div>
+
+                    <div class="fundamentals-tips">
+                        <h3>Dicas Essenciais para Iniciantes:</h3>
+                        <ul>
+                            <li><strong>Respire naturalmente:</strong> Não prenda a respiração durante os movimentos
+                            </li>
+                            <li><strong>Comece devagar:</strong> Domine o básico antes de aumentar a velocidade</li>
+                            <li><strong>Use um espelho:</strong> Observe sua postura e corrija erros</li>
+                            <li><strong>Pratique regularmente:</strong> A consistência é mais importante que a
+                                intensidade</li>
+                            <li><strong>Ouça a música:</strong> Sinta o ritmo antes de tentar acompanhar</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-button"
+                        style="grid-column: span 3; background: linear-gradient(45deg, #ff6b35, #f093fb); color: white; font-weight: bold; padding: 20px; border-radius: 15px; cursor: pointer;"
+                        onclick="startSequence()">
+                        <div style="font-size: 1.2em;">🎯 Praticar Sequência de Fundamentos</div>
+                        <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">Exercite todos os elementos
+                            básicos em sequência</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="section-title">EXPERIMENTE DIFERENTES MÚSICAS</h2>
+
+                    <div class="choreography-section">
+                        <iframe class="choreography-video"
+                            src="https://www.youtube.com/embed/ZcdAc2eP5ic?si=BkI39mNIyS7jLgw_"
+                            title="YouTube video player - Samba no Pé" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                        gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen></iframe>
+
+                        <div class="choreography-tips">
+                            <h3>Dicas para esta coreografia:</h3>
+                            <ul>
+                                <li>Mantenha os joelhos levemente flexionados para facilitar o movimento dos quadris
+                                </li>
+                                <li>O gingado do samba vem da alternância de peso entre os pés</li>
+                                <li>Mantenha os braços soltos para acompanhar o balanço do corpo</li>
+                                <li>Pratique o passo básico até dominar o ritmo antes de adicionar variações</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button class="control-btn" onclick="previousTrack()">⏮</button>
+                        <button class="control-btn" onclick="playPause()" id="playBtn">▶</button>
+                        <button class="control-btn" onclick="nextTrack()">⏭</button>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+
+                    <div class="genre-buttons">
+                        <div class="genre-btn active" onclick="selectGenre('samba')">Samba</div>
+                        <div class="genre-btn" onclick="selectGenre('forro')">Forró</div>
+                        <div class="genre-btn" onclick="selectGenre('pagode')">Pagode</div>
+                        <div class="genre-btn" onclick="selectGenre('funk')">Funk</div>
+                        <div class="genre-btn" onclick="selectGenre('street')">Street Dance</div>
+                        <div class="genre-btn" onclick="selectGenre('contemporanea')">Contemporânea</div>
+                        <div class="genre-btn" onclick="selectGenre('axe')">Axé</div>
+                        <div class="genre-btn" onclick="selectGenre('dance')">Dance</div>
+                    </div>
+
+                    <div class="current-song">
+                        <div class="song-title" id="songTitle">Samba no Pé - Coreografia</div>
+                        <div class="song-artist" id="songArtist">FitDance/Cia de Dança</div>
+                    </div>
+
+                    <button class="start-session-btn" onclick="startSession()">
+                        Iniciar Prática
+                    </button>
+                </div>
+            </div>
+
+            <div class="instruction-text" id="instructionText">
+                Selecione um fundamento e uma música para começar a aprender! A coreografia mostrará como aplicar cada
+                elemento.
+            </div>
+        </div>
+    </div>
+
+     <script src="script.js"></script>
+</body>
+
+</html>
