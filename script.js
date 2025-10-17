@@ -432,142 +432,198 @@
             return poseNames[pose] || 'Posição Neutra';
         }
 
-        function selectGenre(genre) {
-            currentGenre = genre;
+       function selectGenre(genre) {
+    currentGenre = genre;
 
-            // Remove active class from all genres
-            document.querySelectorAll('.genre-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+    // Remove active class from all genres
+    document.querySelectorAll('.genre-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
 
-            // Add active class to selected genre
-            event.target.classList.add('active');
+    // Add active class to selected genre
+    event.target.classList.add('active');
 
-            // Update song info based on genre
-            const genreData = {
-                'samba': {
-                    title: 'Samba no Pé - Coreografia',
-                    artist: 'FitDance/Cia de Dança',
-                    instruction: 'Samba selecionado! Aplique os fundamentos básicos neste ritmo brasileiro.',
-                    videoSrc: 'https://www.youtube.com/embed/ZcdAc2eP5ic?si=BkI39mNIyS7jLgw_',
-                    tips: [
-                        'Mantenha os joelhos levemente flexionados para facilitar o movimento dos quadris',
-                        'O gingado do samba vem da alternância de peso entre os pés',
-                        'Mantenha os braços soltos para acompanhar o balanço do corpo',
-                        'Pratique o passo básico até dominar o ritmo antes de adicionar variações'
-                    ]
-                },
-                'forro': {
-                    title: 'Bicho do Mato (Rastapé) - Forró',
-                    artist: 'Coreografia de Forró/Rastapé',
-                    instruction: 'Forró selecionado! Observe como os fundamentos se aplicam a este estilo.',
-                    videoSrc: 'https://www.youtube.com/embed/bjBx8aOJuq0?si=6pkyuV57pNWvG_nk',
-                    tips: [
-                        'Mantenha os pés próximos ao chão, deslizando suavemente',
-                        'O cavalheiro conduz com as mãos na cintura da parceira',
-                        'A dama deve seguir a condução mantendo contato visual',
-                        'Pratique o dois pra lá e dois pra cá até sentir o ritmo'
-                    ]
-                },
-                'pagode': {
-                    title: 'aviões do forro',
-                    artist: 'xande avião',
-                    instruction: 'Pagode selecionado! Perceba a aplicação dos fundamentos neste estilo.',
-                    videoSrc: 'https://www.youtube.com/embed/mIMGgP1QZ30?si=Hvc8C2tPwSWAzWzh',
-                    tips: [
-                        'O pagode tem um gingado mais suave que o samba',
-                        'Mantenha os braços soltos e use-os para equilibrar o movimento',
-                        'Os pés fazem movimentos curtos e rápidos',
-                        'Pratique o "balanço da navalha" movendo os quadris em oito'
-                    ]
-                },
-                'funk': {
-                    title: 'Baile de Favela - MC João',
-                    artist: 'Coreografia Daniel Saboya',
-                    instruction: 'Funk selecionado! Veja como os fundamentos se adaptam a este estilo urbano.',
-                    videoSrc: 'https://www.youtube.com/embed/vPbHG1YZuoI?si=yYsWqGc5ArTaH5YO',
-                    tips: [
-                        'Foque nos movimentos de quadris e pernas',
-                        'Mantenha os joelhos flexionados para facilitar os rebolados',
-                        'Use os braços para dar ênfase aos movimentos principais',
-                        'Pratique cada movimento separadamente antes de combiná-los'
-                    ]
-                },
-                'street': {
-                    title: 'Pump It - Black Eyed Peas',
-                    artist: 'Coreografia Street Dance',
-                    instruction: 'Street Dance selecionado! Observe a aplicação dos fundamentos básicos.',
-                    videoSrc: 'https://www.youtube.com/embed/ak-oaLEnyZE?si=xOPt7yrBbb0a8Y55',
-                    tips: [
-                        'Mantenha uma postura baixa com joelhos flexionados',
-                        'Trabalhe o isolamento de diferentes partes do corpo',
-                        'Pratique os movimentos no espelho para corrigir a postura',
-                        'Combine passos básicos antes de tentar sequências complexas'
-                    ]
-                },
-                'contemporanea': {
-                    title: 'Caminhos',
-                    artist: 'Trio contemporâneo',
-                    instruction: 'Dança Contemporânea! Veja como os fundamentos se expressam neste estilo.',
-                    videoSrc: 'https://www.youtube.com/embed/608X9hCYc_E?si=jNG3CvqpAhoGjieo',
-                    tips: [
-                        'Foque na fluidez e conexão entre os movimentos',
-                        'Trabalhe a respiração sincronizada com os movimentos',
-                        'Use o espaço de forma consciente e expressiva',
-                        'Pratique a queda e recuperação para desenvolver controle'
-                    ]
-                },
-                'axe': {
-                    title: 'Segure o Tchan - É O Tchan',
-                    artist: 'Coreografia É o Tchan',
-                    instruction: 'Axé selecionado! Aplique os fundamentos neste ritmo energético.',
-                    videoSrc: 'https://www.youtube.com/embed/YWxiK7TFN5k?si=h3LysiTBkCCnItzh',
-                    tips: [
-                        'Mantenha alta energia e sorriso no rosto',
-                        'Os movimentos são amplos e alegres',
-                        'Trabalhe a coordenação de braços e pernas',
-                        'Pratique os passos marcando o ritmo forte do axé'
-                    ]
-                },
-                'dance': {
-                    title: 'One More Time - Daft Punk',
-                    artist: 'Coreografia Dance/House',
-                    instruction: 'Dance eletrônica! Observe a aplicação dos fundamentos neste estilo.',
-                    videoSrc: 'https://www.youtube.com/embed/4l8vDGLwWes?si=LenyO8jKXQIiUE81',
-                    tips: [
-                        'Mantenha o ritmo com movimentos precisos',
-                        'Trabalhe a memória coreográfica repetindo sequências',
-                        'Use todo o corpo, não apenas as pernas',
-                        'Pratique com contagens musicais para melhor sincronização'
-                    ]
-                }
-            };
-
-            const data = genreData[genre];
-            document.getElementById('songTitle').textContent = data.title;
-            document.getElementById('songArtist').textContent = data.artist;
-            document.getElementById('instructionText').textContent = data.instruction;
-
-            // Update choreography video and tips
-            updateChoreography(data);
+    // Update song info based on genre
+    const genreData = {
+        'samba': {
+            title: 'Coreografia de Samba',
+            artist: 'Vídeo demonstrativo',
+            instruction: 'Samba selecionado! Aplique os fundamentos básicos neste ritmo brasileiro.',
+            videoSrc: 'https://player.vimeo.com/video/1125709046?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            videoType: 'vimeo',
+            tips: [
+                'Mantenha os joelhos levemente flexionados para facilitar o movimento dos quadris',
+                'O gingado do samba vem da alternância de peso entre os pés',
+                'Mantenha os braços soltos para acompanhar o balanço do corpo',
+                'Pratique o passo básico até dominar o ritmo antes de adicionar variações'
+            ]
+        },
+        'forro': {
+            title: 'Coreografia de Forró',
+            artist: 'Vídeo demonstrativo',
+            instruction: 'Forró selecionado! Observe como os fundamentos se aplicam a este estilo.',
+            videoSrc: 'https://player.vimeo.com/video/1128052810?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            videoType: 'vimeo',
+            tips: [
+                'Mantenha os pés próximos ao chão, deslizando suavemente',
+                'O cavalheiro conduz com as mãos na cintura da parceira',
+                'A dama deve seguir a condução mantendo contato visual',
+                'Pratique o dois pra lá e dois pra cá até sentir o ritmo'
+            ]
+        },
+        'pagode': {
+            title: 'Coreografia de Pagode',
+            artist: 'Vídeo demonstrativo',
+            instruction: 'Pagode selecionado! Perceba a aplicação dos fundamentos neste estilo.',
+            videoSrc: 'https://player.vimeo.com/video/1128048817?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+            videoType: 'vimeo',
+            tips: [
+                'O pagode tem um gingado mais suave que o samba',
+                'Mantenha os braços soltos e use-os para equilibrar o movimento',
+                'Os pés fazem movimentos curtos e rápidos',
+                'Pratique o "balanço da navalha" movendo os quadris em oito'
+            ]
+        },
+        'funk': {
+            title: 'Baile de Favela - MC João',
+            artist: 'Coreografia Daniel Saboya',
+            instruction: 'Funk selecionado! Veja como os fundamentos se adaptam a este estilo urbano.',
+            videoSrc: 'https://www.youtube.com/embed/vPbHG1YZuoI?si=yYsWqGc5ArTaH5YO',
+            videoType: 'youtube',
+            tips: [
+                'Foque nos movimentos de quadris e pernas',
+                'Mantenha os joelhos flexionados para facilitar os rebolados',
+                'Use os braços para dar ênfase aos movimentos principais',
+                'Pratique cada movimento separadamente antes de combiná-los'
+            ]
+        },
+        'street': {
+            title: 'Pump It - Black Eyed Peas',
+            artist: 'Coreografia Street Dance',
+            instruction: 'Street Dance selecionado! Observe a aplicação dos fundamentos básicos.',
+            videoSrc: 'https://www.youtube.com/embed/ak-oaLEnyZE?si=xOPt7yrBbb0a8Y55',
+            videoType: 'youtube',
+            tips: [
+                'Mantenha uma postura baixa com joelhos flexionados',
+                'Trabalhe o isolamento de diferentes partes do corpo',
+                'Pratique os movimentos no espelho para corrigir a postura',
+                'Combine passos básicos antes de tentar sequências complexas'
+            ]
+        },
+        'contemporanea': {
+            title: 'Caminhos',
+            artist: 'Trio contemporâneo',
+            instruction: 'Dança Contemporânea! Veja como os fundamentos se expressam neste estilo.',
+            videoSrc: 'https://www.youtube.com/embed/608X9hCYc_E?si=jNG3CvqpAhoGjieo',
+            videoType: 'youtube',
+            tips: [
+                'Foque na fluidez e conexão entre os movimentos',
+                'Trabalhe a respiração sincronizada com os movimentos',
+                'Use o espaço de forma consciente e expressiva',
+                'Pratique a queda e recuperação para desenvolver controle'
+            ]
+        },
+        'axe': {
+            title: 'Segure o Tchan - É O Tchan',
+            artist: 'Coreografia É o Tchan',
+            instruction: 'Axé selecionado! Aplique os fundamentos neste ritmo energético.',
+            videoSrc: 'https://www.youtube.com/embed/YWxiK7TFN5k?si=h3LysiTBkCCnItzh',
+            videoType: 'youtube',
+            tips: [
+                'Mantenha alta energia e sorriso no rosto',
+                'Os movimentos são amplos e alegres',
+                'Trabalhe a coordenação de braços e pernas',
+                'Pratique os passos marcando o ritmo forte do axé'
+            ]
+        },
+        'dance': {
+            title: 'One More Time - Daft Punk',
+            artist: 'Coreografia Dance/House',
+            instruction: 'Dance eletrônica! Observe a aplicação dos fundamentos neste estilo.',
+            videoSrc: 'https://www.youtube.com/embed/4l8vDGLwWes?si=LenyO8jKXQIiUE81',
+            videoType: 'youtube',
+            tips: [
+                'Mantenha o ritmo com movimentos precisos',
+                'Trabalhe a memória coreográfica repetindo sequências',
+                'Use todo o corpo, não apenas as pernas',
+                'Pratique com contagens musicais para melhor sincronização'
+            ]
         }
+    };
 
-        function updateChoreography(data) {
-            const videoElement = document.querySelector('.choreography-video');
-            const tipsElement = document.querySelector('.choreography-tips');
+    const data = genreData[genre];
+    document.getElementById('songTitle').textContent = data.title;
+    document.getElementById('songArtist').textContent = data.artist;
+    document.getElementById('instructionText').textContent = data.instruction;
 
-            // Update video source
-            if (data.videoSrc) {
-                videoElement.src = data.videoSrc;
-            }
+    // Update choreography video and tips
+    updateChoreography(data);
+}
 
-            // Update tips
-            tipsElement.innerHTML = `<h3>Dicas para esta coreografia:</h3><ul>`;
-            data.tips.forEach(tip => {
-                tipsElement.innerHTML += `<li>${tip}</li>`;
-            });
-            tipsElement.innerHTML += `</ul>`;
+function updateChoreography(data) {
+    const videoContainer = document.querySelector('.choreography-section');
+    const tipsElement = document.querySelector('.choreography-tips');
+
+    // Update video - criar novo iframe baseado no tipo
+    let videoHTML;
+    if (data.videoType === 'vimeo') {
+        videoHTML = `<iframe class="choreography-video"
+            src="${data.videoSrc}"
+            width="848" height="382" frameborder="0" 
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            title="${data.title}" 
+            allowfullscreen></iframe>`;
+    } else {
+        // YouTube
+        videoHTML = `<iframe class="choreography-video"
+            src="${data.videoSrc}"
+            title="${data.title}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>`;
+    }
+
+    // Substituir o vídeo atual
+    const currentVideo = videoContainer.querySelector('.choreography-video');
+    if (currentVideo) {
+        currentVideo.outerHTML = videoHTML;
+    }
+
+    // Update tips
+    tipsElement.innerHTML = `<h3>Dicas para esta coreografia:</h3><ul>`;
+    data.tips.forEach(tip => {
+        tipsElement.innerHTML += `<li>${tip}</li>`;
+    });
+    tipsElement.innerHTML += `</ul>`;
+}
+
+      function updateChoreography(data) {
+    const videoElement = document.querySelector('.choreography-video');
+    const tipsElement = document.querySelector('.choreography-tips');
+
+    // Update video source - tratamento especial para Vimeo
+    if (data.videoSrc) {
+        // Se for Vimeo, substituir todo o iframe
+        if (data.videoSrc.includes('vimeo.com')) {
+            videoElement.outerHTML = `<iframe class="choreography-video"
+                src="${data.videoSrc}"
+                width="848" height="382" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" title="${data.title}" allowfullscreen></iframe>`;
+        } else {
+            // Se for YouTube, manter o formato original
+            videoElement.src = data.videoSrc;
         }
+    }
+
+    // Update tips
+    tipsElement.innerHTML = `<h3>Dicas para esta coreografia:</h3><ul>`;
+    data.tips.forEach(tip => {
+        tipsElement.innerHTML += `<li>${tip}</li>`;
+    });
+    tipsElement.innerHTML += `</ul>`;
+}
 
         function startSequence() {
             document.getElementById('instructionText').textContent = 'Iniciando sequência de fundamentos! Pratique cada elemento por 30 segundos.';
